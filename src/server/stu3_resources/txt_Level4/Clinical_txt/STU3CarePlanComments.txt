@@ -1,0 +1,67 @@
+Main
+CarePlan
+identifier	Σ	0..*	Identifier	External Ids for this plan
+
+definition	Σ	0..*	Reference(PlanDefinition | Questionnaire)	Protocol or definition
+
+basedOn	Σ	0..*	Reference(CarePlan)	Fulfills care plan
+
+replaces	Σ	0..*	Reference(CarePlan)	CarePlan replaced by this CarePlan
+
+partOf	Σ	0..*	Reference(CarePlan)	Part of referenced CarePlan
+
+status	?!Σ	1..1	code	draft | active | suspended | completed | entered-in-error | cancelled | unknown
+CarePlanStatus (Required)
+
+intent	?!Σ	1..1	code	proposal | plan | order | option
+CarePlanIntent (Required)
+
+category	Σ	0..*	CodeableConcept	Type of plan
+Care Plan Category (Example)
+
+title	Σ	0..1	string	Human-friendly name for the CarePlan
+
+description	Σ	0..1	string	Summary of nature of plan
+
+subject	Σ	1..1	Reference(Patient | Group)	Who care plan is for
+
+context	Σ	0..1	Reference(Encounter | EpisodeOfCare)	Created in context of
+
+period	Σ	0..1	Period	Time period plan covers
+
+author	Σ	0..*	Reference(Patient | Practitioner | RelatedPerson | Organization | CareTeam)	Who is responsible for contents of the plan
+
+careTeam		0..*	Reference(CareTeam)	Who's involved in plan?
+
+addresses	Σ	0..*	Reference(Condition)	Health issues this plan addresses
+
+supportingInfo		0..*	Reference(Any)	Information considered as part of plan
+
+goal		0..*	Reference(Goal)	Desired outcome of plan
+
+activity	I	0..*	BackboneElement	Action to occur as part of plan
++ Provide a reference or detail, not both
+
+note		0..*	Annotation	Comments about the plan
+
+
+Backbone
+activity
+outcomeCodeableConcept		0..*	CodeableConcept	Results of the activity
+Care Plan Activity Outcome (Example)
+
+outcomeReference		0..*	Reference(Any)	Appointment, Encounter, Procedure, etc.
+
+progress		0..*	Annotation	Comments about the activity status/progress
+
+reference	I	0..1	Reference(Appointment | CommunicationRequest | DeviceRequest | MedicationRequest | NutritionOrder | Task | ProcedureRequest | ReferralRequest | VisionPrescription | RequestGroup)	Activity details defined in specific resource
+
+detail	I	0..1	BackboneElement	In-line definition of activity
+CarePlanActivityCategory (Example)
+Care Plan Activity (Example)
+Activity Reason (Example)
+CarePlanActivityStatus (Required)
+SNOMED CT Medication Codes (Example)
+
+
+eof
