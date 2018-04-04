@@ -46,6 +46,14 @@ const CONFIG = {
 			oauth: {
 				service: './src/server/oauth/service.mock.js' // optional if you plan to implement oauth in the same project
 			}
+		},
+		stu3: {
+			patient: {
+				service: './src/server/stu3/patient/service.mock.js',
+				corsOptions: {
+					maxAge: 3600
+				}
+			}
 		}
 	}
 };
